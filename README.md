@@ -8,9 +8,7 @@ Removes the Ink Annotations from the file specified.
 
 If no files are specified it acts on all the the PowerPoint Presentation found in the current directory.
 
-If the file is marked **Final** it removes the attribute
-
-The script is given **AS IS** and it is under the **AGPL Aferro license 3.0**.
+If the file is marked **Final** it removes the attribute.
 
 ## Usage
 
@@ -19,3 +17,6 @@ The script is given **AS IS** and it is under the **AGPL Aferro license 3.0**.
 
 **NoInk.ps1 myPresentation.pptx**
 - It removes the Ink Annotation from the specified file
+
+# DISCLAIMER & LICENSE
+The script is given **AS IS** and it is under the **AGPL Aferro license 3.0**.
