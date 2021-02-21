@@ -4,7 +4,9 @@ Removes Ink Annotations from PowerPoint presentations
 
 # DESCRIPTION
 
-Removes the Ink Annotations from the file specified. If no files are specified it acts on all the the PowerPoint Presentation found in the current directory.
+Removes the Ink Annotations from the file specified. 
+
+If no files are specified it acts on all the the PowerPoint Presentation found in the current directory.
 
 If the file is marked **Final** it removes the attribute
 
