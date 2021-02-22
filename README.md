@@ -12,10 +12,11 @@ If the file is marked **Final** it removes the attribute.
 
 ## Usage
 
-**NoInk.ps1** 
+From t powershell command line:
+**.\NoInk.ps1** 
 - It removes the Ink Annotation from all the .pptx file found in the current directory
 
-**NoInk.ps1 myPresentation.pptx**
+**.\NoInk.ps1 myPresentation.pptx**
 - It removes the Ink Annotation from the specified file
 
 # DISCLAIMER & LICENSE
