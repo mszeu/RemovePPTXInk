@@ -20,7 +20,15 @@ param (
     
     [parameter(Position = 0)][string]$FileName
 )   
-$officeObj = New-Object -ComObject PowerPoint.Application
+try {
+    $officeObj = New-Object -ComObject PowerPoint.Application
+}
+catch { 
+    Write-Host "It was not possible to instatiate the PowerPoint COM object."
+    Write-Host "Terminating"
+    Write-Error "Error"
+    Exit -1
+}
 $presentation_in_dir = Get-ChildItem -Filter '*.pptx' -File $FileName
 if ($null -ne $presentation_in_dir ) {
     foreach ($presentation_file in $presentation_in_dir ) {
@@ -33,7 +41,7 @@ if ($null -ne $presentation_in_dir ) {
                 }
             }
         }
-        $presentation.Final=$false
+        $presentation.Final = $false
         $presentation.Save()
         $presentation.Close()
         Write-Host $presentation_file.FullName "has been processed"
