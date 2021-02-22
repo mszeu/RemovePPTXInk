@@ -8,8 +8,8 @@
     .PARAMETER FileName
      The PowerPoint presentation from where you'd like to remove the ink annotations
     .EXAMPLE
-     NoInk.ps1
-     NoInk.ps1 myPresentation.pptx
+     .\NoInk.ps1
+     .\NoInk.ps1 myPresentation.pptx
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
       Version: 0.1
@@ -48,6 +48,7 @@ if ($null -ne $presentation_in_dir ) {
     }
 }
 else { Write-Host "The file specified was not found" }
+$officeObj.Quit()
 $officeObj = $null
 
 
