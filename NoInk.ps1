@@ -7,14 +7,24 @@
     If the file is marked Final it removes the attribute
     .PARAMETER FileName
      The PowerPoint presentation from where you'd like to remove the ink annotations
-    .EXAMPLE
+    .INPUTS
+     None
+    .OUTPUTS
+     None
+     .EXAMPLE
      .\NoInk.ps1
+     Removes the ink annotations from all the slide decks (.pptx files) found in the current directory
+     .EXAMPLE
      .\NoInk.ps1 myPresentation.pptx
+     Removes the ink annotations from the file myPresentation.pptx
+    .EXAMPLE
+     .\NoInk.ps1 C:\Users\mzuppone\Desktop
+     Removes the ink annotations from all the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
       Version: 0.1
       License: AGPL 3.0 - Plese abide to the Aferro AGPL 3.0 license rules! It's free but give credits to the author :-)
-      
+     
 #>
 param (
     
