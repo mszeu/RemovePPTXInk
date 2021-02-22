@@ -8,8 +8,8 @@
     .PARAMETER FileName
      The PowerPoint presentation from where you'd like to remove the ink annotations
     .EXAMPLE
-     NoInk.ps1
-     NoInk.ps1 myPresentation.pptx
+     .\NoInk.ps1
+     .\NoInk.ps1 myPresentation.pptx
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
       Version: 0.1
@@ -20,7 +20,15 @@ param (
     
     [parameter(Position = 0)][string]$FileName
 )   
-$officeObj = New-Object -ComObject PowerPoint.Application
+try {
+    $officeObj = New-Object -ComObject PowerPoint.Application
+}
+catch { 
+    Write-Host "It was not possible to instatiate the PowerPoint COM object."
+    Write-Host "Terminating"
+    Write-Error "Error"
+    Exit -1
+}
 $presentation_in_dir = Get-ChildItem -Filter '*.pptx' -File $FileName
 if ($null -ne $presentation_in_dir ) {
     foreach ($presentation_file in $presentation_in_dir ) {
@@ -33,13 +41,14 @@ if ($null -ne $presentation_in_dir ) {
                 }
             }
         }
-        $presentation.Final=$false
+        $presentation.Final = $false
         $presentation.Save()
         $presentation.Close()
         Write-Host $presentation_file.FullName "has been processed"
     }
 }
 else { Write-Host "The file specified was not found" }
+$officeObj.Quit()
 $officeObj = $null
 
 
