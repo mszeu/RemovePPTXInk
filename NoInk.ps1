@@ -34,7 +34,7 @@ try {
     $officeObj = New-Object -ComObject PowerPoint.Application
 }
 catch { 
-    Write-Host "It was not possible to instatiate the PowerPoint COM object."
+    Write-Host "It was not possible to instantiate the PowerPoint COM object."
     Write-Host "Terminating"
     Write-Error "Error"
     Exit -1
