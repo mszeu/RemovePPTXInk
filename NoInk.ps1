@@ -22,7 +22,7 @@
      Removes the ink annotations from all the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
-      Version: 0.1.1
+      Version: 0.2
       License: AGPL 3.0 - Plese abide to the Aferro AGPL 3.0 license rules! It's free but give credits to the author :-)
      
 #>
@@ -47,6 +47,8 @@ if ($null -ne $presentation_in_dir ) {
         foreach ($slide in $slides) {
             foreach ($shape in $slide.Shapes) {
                 if ($shape.Type -eq 23) {
+                    Write-Host $shape #TODO: Explore what are the properties of the SHAPE object
+					Write-Host $slide.SlideIndex " Slide" $slide.SlideNumber
                     $shape.Delete()
                 }
             }
