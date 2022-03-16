@@ -46,9 +46,9 @@ if ($null -ne $presentation_in_dir ) {
         $slides = $presentation.Slides
         foreach ($slide in $slides) {
             foreach ($shape in $slide.Shapes) {
-                if ($shape.Type -eq 23) {
-                    Write-Host $shape #TODO: Explore what are the properties of the SHAPE object
-					Write-Host $slide.SlideIndex " Slide" $slide.SlideNumber
+                if (($shape.Type -eq 23) -or ($shape.Type -eq 22)) {
+                    #The shape type is the MsoShapeType enumeration, the documentation can be found at https://docs.microsoft.com/en-us/office/vba/api/office.msoshapetype
+					Write-Host "Shape detected of type" $shape.Type "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                     $shape.Delete()
                 }
             }
