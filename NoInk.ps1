@@ -87,17 +87,17 @@ if ($null -ne $presentation_in_dir ) {
         foreach ($slide in $slides) {
             foreach ($shape in $slide.Shapes) {
                 if ($ShowAll) {
-                    Write-Host "Shape detected of type" $shape.Type [MsoShapeType].GetEnumName($shape.Type) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
+                    Write-Host "Shape detected of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                     if (($shape.Type -eq 23) -or ($shape.Type -eq 22)) {
                         $shape.Delete()
-                        Write-Host "Shape deleted of type" $shape.Type [MsoShapeType].GetEnumName($shape.Type) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
+                        Write-Host "Shape deleted of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                     }
                 }
                 elseif (($shape.Type -eq 23) -or ($shape.Type -eq 22)) {
                     #The shape type is the MsoShapeType enumeration, the documentation can be found at https://docs.microsoft.com/en-us/office/vba/api/office.msoshapetype
-                    Write-Host "Shape detected of type" $shape.Type [MsoShapeType].GetEnumName($shape.Type) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
+                    Write-Host "Shape detected of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                     $shape.Delete()
-                    Write-Host "Shape deleted of type" $shape.Type [MsoShapeType].GetEnumName($shape.Type) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
+                    Write-Host "Shape deleted of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                 }
             }
         }
