@@ -26,7 +26,7 @@
      Removes the ink annotations from all the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop
     .EXAMPLE
      .\NoInk.ps1 C:\Users\mzuppone\Desktop -DryRun
-     All the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop are processed but no shapers are deleted from them
+     All the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop are processed but no shapes are deleted from them
     .EXAMPLE
      .\NoInk.ps1 myPresentation.pptx -ShowAll
      Removes the ink annotations from the file myPresentation.pptx and shows all the shapes type found in every slide
