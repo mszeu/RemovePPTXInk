@@ -8,8 +8,10 @@
     .PARAMETER FileName
      The PowerPoint presentation from where you'd like to remove the ink annotations
     .PARAMETER ShowAll
-     If the parameter is specified all the objests found in every slides are enumerated but only the objects ofclear type msoInk and msoInkComment are removed
-    .INPUTS
+     If the parameter is specified all the objests found in every slides are enumerated but only the objects of type msoInk and msoInkComment are removed
+    .PARAMETER DryRun
+    If the parameter is specified the objects of type msoInk and msoInkComment are not deleted
+     .INPUTS
      None
     .OUTPUTS
      None
@@ -22,6 +24,12 @@
     .EXAMPLE
      .\NoInk.ps1 C:\Users\mzuppone\Desktop
      Removes the ink annotations from all the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop
+    .EXAMPLE
+     .\NoInk.ps1 C:\Users\mzuppone\Desktop -DryRun
+     All the slide decks (.pptx files) found in C:\Users\mzuppone\Desktop are processed but no shapers are deleted from them
+    .EXAMPLE
+     .\NoInk.ps1 myPresentation.pptx -ShowAll
+     Removes the ink annotations from the file myPresentation.pptx and shows all the shapes type found in every slide
     .NOTES
       Author: Marco S. Zuppone - msz@msz.eu - https://msz.eu
       Version: 0.2
@@ -31,7 +39,8 @@
 param (
     
     [parameter(Position = 0)][string]$FileName,
-    [switch]$ShowAll
+    [switch]$ShowAll,
+    [switch]$DryRun
 ) 
 enum MsoShapeType {
     # For maximum compatibility with all the Microsoft Office installation I defined here the MsoShapeType
@@ -89,15 +98,19 @@ if ($null -ne $presentation_in_dir ) {
                 if ($ShowAll) {
                     Write-Host "Shape detected of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
                     if (($shape.Type -eq 23) -or ($shape.Type -eq 22)) {
-                        $shape.Delete()
-                        Write-Host "Shape deleted"
+                        if (-not $DryRun) {
+                            $shape.Delete()
+                            Write-Host "Shape deleted"
+                        }
                     }
                 }
                 elseif (($shape.Type -eq 23) -or ($shape.Type -eq 22)) {
                     #The shape type is the MsoShapeType enumeration, the documentation can be found at https://docs.microsoft.com/en-us/office/vba/api/office.msoshapetype
                     Write-Host "Shape detected of type" $shape.Type ([MsoShapeType].GetEnumName($shape.Type)) "at SlideIndex" $slide.SlideIndex "Slide" $slide.SlideNumber
-                    $shape.Delete()
-                    Write-Host "Shape deleted" 
+                    if (-not $DryRun) {
+                        $shape.Delete()
+                        Write-Host "Shape deleted"
+                    } 
                 }
             }
         }
@@ -111,5 +124,3 @@ if ($null -ne $presentation_in_dir ) {
 else { Write-Host "The file specified was not found" }
 $officeObj.Quit()
 $officeObj = $null
-
-
